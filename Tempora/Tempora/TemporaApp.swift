@@ -7,6 +7,6 @@ struct TemporaApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: HabitModel.self)
+        .modelContainer(for: [HabitModel.self, PomodoroSessionModel.self])
     }
 }
