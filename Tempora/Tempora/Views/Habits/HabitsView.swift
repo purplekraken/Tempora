@@ -37,6 +37,22 @@ struct HabitsView: View {
                         LazyVStack(spacing: 12) {
                             ForEach(habits) { habit in
                                 HabitCardView(habit: habit)
+                                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                        Button(role: .destructive) {
+                                            withAnimation {
+                                                modelContext.delete(habit)
+                                            }
+                                            UINotificationFeedbackGenerator().notificationOccurred(.warning)
+                                        } label: {
+                                            Label("Удалить", systemImage: "trash")
+                                        }
+                                    }
+                                    .swipeActions(edge: .leading) {
+                                        NavigationLink(destination: HabitDetailView(habit: habit)) {
+                                            Label("Детали", systemImage: "chart.bar.fill")
+                                        }
+                                        .tint(.blue)
+                                    }
                             }
                         }
                         .padding(.horizontal)

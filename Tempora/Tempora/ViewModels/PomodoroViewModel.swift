@@ -124,6 +124,9 @@ class PomodoroViewModel {
         // Haptic
         UINotificationFeedbackGenerator().notificationOccurred(.success)
 
+        // Уведомление  ← это новое
+        NotificationManager.shared.sendPomodoroComplete(type: currentSession)
+
         moveToNextSession()
     }
 

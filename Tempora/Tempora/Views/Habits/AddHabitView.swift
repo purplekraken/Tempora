@@ -9,6 +9,8 @@ struct AddHabitView: View {
     @State private var selectedIcon = "star.fill"
     @State private var selectedColorHex = "4A90D9"
     @State private var selectedDays = [1, 2, 3, 4, 5, 6, 7]
+    @State private var reminderEnabled = false
+    @State private var reminderTime = Date()
 
     // 12 цветов на выбор
     let colors: [(String, String)] = [
@@ -169,7 +171,44 @@ struct AddHabitView: View {
                         }
                         .padding(.horizontal)
                     }
+                    
+                    // Напоминание
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Напоминание")
+                            .font(.headline)
+                            .padding(.horizontal)
 
+                        VStack(spacing: 0) {
+                            Toggle(isOn: $reminderEnabled.animation()) {
+                                Label("Включить напоминание", systemImage: "bell.fill")
+                            }
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: reminderEnabled ? 0 : 12))
+
+                            if reminderEnabled {
+                                Divider()
+                                    .padding(.horizontal)
+
+                                DatePicker(
+                                    "Время",
+                                    selection: $reminderTime,
+                                    displayedComponents: .hourAndMinute
+                                )
+                                .padding()
+                                .background(Color(.secondarySystemBackground))
+                                .clipShape(
+                                    UnevenRoundedRectangle(
+                                        bottomLeadingRadius: 12,
+                                        bottomTrailingRadius: 12
+                                    )
+                                )
+                            }
+                        }
+                        .padding(.horizontal)
+                        .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+                    }
+                    
                     // Кнопка сохранить
                     Button {
                         saveHabit()
@@ -244,7 +283,14 @@ struct AddHabitView: View {
             colorHex: selectedColorHex
         )
         habit.frequency = selectedDays
+        habit.reminderTime = reminderEnabled ? reminderTime : nil
         modelContext.insert(habit)
+
+        // Планируем уведомление если включено
+        if reminderEnabled {
+            NotificationManager.shared.scheduleHabitReminder(habit: habit)
+        }
+
         UINotificationFeedbackGenerator().notificationOccurred(.success)
         dismiss()
     }
