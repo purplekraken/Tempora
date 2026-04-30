@@ -9,17 +9,17 @@ struct ContentView: View {
                     Label("Привычки", systemImage: "checkmark.circle.fill")
                 }
 
-            Text("Помодоро 🍅")
+            PomodoroView()
                 .tabItem {
                     Label("Помодоро", systemImage: "timer")
                 }
 
-            Text("Цена времени 💰")
+            PriceCalculatorView()
                 .tabItem {
                     Label("Цена времени", systemImage: "dollarsign.circle.fill")
                 }
 
-            Text("Настройки ⚙️")
+            SettingsView()
                 .tabItem {
                     Label("Настройки", systemImage: "gearshape.fill")
                 }
@@ -31,3 +31,4 @@ struct ContentView: View {
     ContentView()
         .modelContainer(for: HabitModel.self, inMemory: true)
 }
+
