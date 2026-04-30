@@ -54,83 +54,80 @@ struct HabitCardView: View {
     }
 
     var body: some View {
-        NavigationLink(destination: HabitDetailView(habit: habit)) {
-            HStack(spacing: 14) {
+        HStack(spacing: 14) {
 
-                // Иконка привычки
-                ZStack {
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(habitColor.opacity(0.15))
-                        .frame(width: 48, height: 48)
+            // Иконка привычки
+            ZStack {
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(habitColor.opacity(0.15))
+                    .frame(width: 48, height: 48)
 
-                    Image(systemName: habit.icon)
-                        .font(.system(size: 22))
-                        .foregroundStyle(habitColor)
-                }
-
-                // Название + streak + 7 дней
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(habit.name)
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundStyle(isCompletedToday ? .secondary : .primary)
-                        .strikethrough(isCompletedToday, color: .secondary)
-
-                    HStack(spacing: 8) {
-                        if streak > 0 {
-                            HStack(spacing: 3) {
-                                Text("🔥")
-                                    .font(.caption)
-                                Text("\(streak)")
-                                    .font(.caption)
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.orange)
-                            }
-                        }
-
-                        HStack(spacing: 4) {
-                            ForEach(0..<7, id: \.self) { index in
-                                Circle()
-                                    .fill(last7Days[index] ? habitColor : Color(.systemGray5))
-                                    .frame(width: 8, height: 8)
-                            }
-                        }
-                    }
-                }
-
-                Spacer()
-
-                // Чекбокс — останавливаем NavigationLink
-                Button {
-                    toggleCompletion()
-                } label: {
-                    ZStack {
-                        Circle()
-                            .fill(isCompletedToday ? habitColor : Color(.systemGray5))
-                            .frame(width: 32, height: 32)
-
-                        if isCompletedToday {
-                            Image(systemName: "checkmark")
-                                .font(.system(size: 14, weight: .bold))
-                                .foregroundStyle(.white)
-                        }
-                    }
-                    .scaleEffect(checkmarkScale)
-                }
-                .buttonStyle(.plain)
+                Image(systemName: habit.icon)
+                    .font(.system(size: 22))
+                    .foregroundStyle(habitColor)
             }
-            .padding(16)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color(.secondarySystemBackground))
-                    .shadow(
-                        color: showGlow ? habitColor.opacity(0.3) : .black.opacity(0.06),
-                        radius: showGlow ? 12 : 8,
-                        x: 0, y: 2
-                    )
-            )
-            .offset(x: cardOffset)
+
+            // Название + streak + 7 дней
+            VStack(alignment: .leading, spacing: 6) {
+                Text(habit.name)
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundStyle(isCompletedToday ? .secondary : .primary)
+                    .strikethrough(isCompletedToday, color: .secondary)
+
+                HStack(spacing: 8) {
+                    if streak > 0 {
+                        HStack(spacing: 3) {
+                            Text("🔥")
+                                .font(.caption)
+                            Text("\(streak)")
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.orange)
+                        }
+                    }
+
+                    HStack(spacing: 4) {
+                        ForEach(0..<7, id: \.self) { index in
+                            Circle()
+                                .fill(last7Days[index] ? habitColor : Color(.systemGray5))
+                                .frame(width: 8, height: 8)
+                        }
+                    }
+                }
+            }
+
+            Spacer()
+
+            // Чекбокс
+            Button {
+                toggleCompletion()
+            } label: {
+                ZStack {
+                    Circle()
+                        .fill(isCompletedToday ? habitColor : Color(.systemGray5))
+                        .frame(width: 32, height: 32)
+
+                    if isCompletedToday {
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundStyle(.white)
+                    }
+                }
+                .scaleEffect(checkmarkScale)
+            }
+            .buttonStyle(.plain)
         }
-        .buttonStyle(.plain)
+        .padding(16)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(.secondarySystemBackground))
+                .shadow(
+                    color: showGlow ? habitColor.opacity(0.3) : .black.opacity(0.06),
+                    radius: showGlow ? 12 : 8,
+                    x: 0, y: 2
+                )
+        )
+        .offset(x: cardOffset)
     }
     
     

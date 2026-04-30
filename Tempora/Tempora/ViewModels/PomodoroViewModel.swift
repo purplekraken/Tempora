@@ -7,13 +7,19 @@ import UIKit
 class PomodoroViewModel {
 
     // Настройки длительности (в секундах)
-    var focusDuration: Int = 25 * 60
-    var shortBreakDuration: Int = 5 * 60
-    var longBreakDuration: Int = 15 * 60
+    var focusDuration: Int {
+        (UserDefaults.standard.integer(forKey: "focusDuration").nonZero ?? 25) * 60
+    }
+    var shortBreakDuration: Int {
+        (UserDefaults.standard.integer(forKey: "shortBreakDuration").nonZero ?? 5) * 60
+    }
+    var longBreakDuration: Int {
+        (UserDefaults.standard.integer(forKey: "longBreakDuration").nonZero ?? 15) * 60
+    }
 
     // Состояние таймера
     var currentSession: SessionType = .focus
-    var timeRemaining: Int = 25 * 60
+    var timeRemaining: Int = (UserDefaults.standard.integer(forKey: "focusDuration").nonZero ?? 25) * 60
     var isRunning: Bool = false
     var isPaused: Bool = false
     var completedPomodoros: Int = 0

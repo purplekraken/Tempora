@@ -112,7 +112,7 @@ struct SettingsView: View {
                     HStack {
                         Label("Версия", systemImage: "info.circle.fill")
                         Spacer()
-                        Text("v0.5 MVP")
+                        Text("Version 0.5.1")
                             .foregroundStyle(.secondary)
                     }
                     HStack {

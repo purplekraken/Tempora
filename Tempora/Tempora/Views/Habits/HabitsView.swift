@@ -8,7 +8,6 @@ struct HabitsView: View {
 
     @State private var showingAddHabit = false
 
-    // Считаем сколько привычек выполнено сегодня
     var completedToday: Int {
         habits.filter { habit in
             let today = Calendar.current.startOfDay(for: Date())
@@ -22,40 +21,35 @@ struct HabitsView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 20) {
+                    ProgressRingView(completed: completedToday, total: habits.count)
+                        .padding(.top, 8)
 
-                    // Прогресс кольцо вверху
-                    ProgressRingView(
-                        completed: completedToday,
-                        total: habits.count
-                    )
-                    .padding(.top, 8)
-
-                    // Список привычек
                     if habits.isEmpty {
                         EmptyHabitsView()
                     } else {
-                        LazyVStack(spacing: 12) {
+                        List {
                             ForEach(habits) { habit in
-                                HabitCardView(habit: habit)
-                                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                        Button(role: .destructive) {
-                                            withAnimation {
-                                                modelContext.delete(habit)
-                                            }
-                                            UINotificationFeedbackGenerator().notificationOccurred(.warning)
-                                        } label: {
-                                            Label("Удалить", systemImage: "trash")
+                                NavigationLink(destination: HabitDetailView(habit: habit)) {
+                                    HabitCardView(habit: habit)
+                                }
+                                .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
+                                .listRowBackground(Color.clear)
+                                .listRowSeparator(.hidden)
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    Button(role: .destructive) {
+                                        withAnimation {
+                                            modelContext.delete(habit)
                                         }
+                                        UINotificationFeedbackGenerator().notificationOccurred(.warning)
+                                    } label: {
+                                        Label("Удалить", systemImage: "trash")
                                     }
-                                    .swipeActions(edge: .leading) {
-                                        NavigationLink(destination: HabitDetailView(habit: habit)) {
-                                            Label("Детали", systemImage: "chart.bar.fill")
-                                        }
-                                        .tint(.blue)
-                                    }
+                                }
                             }
                         }
-                        .padding(.horizontal)
+                        .listStyle(.plain)
+                        .frame(minHeight: CGFloat(habits.count) * 90)
+                        .scrollDisabled(true)
                     }
                 }
                 .padding(.bottom, 100)
@@ -78,18 +72,11 @@ struct HabitsView: View {
         }
     }
 
-    // Приветствие зависит от времени суток
     func greetingWithDate() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
-        let greeting: String
-        if hour < 12 {
-            greeting = "Доброе утро"
-        } else if hour < 18 {
-            greeting = "Добрый день"
-        } else {
-            greeting = "Добрый вечер"
-        }
-        return greeting
+        if hour < 12 { return "Доброе утро" }
+        else if hour < 18 { return "Добрый день" }
+        else { return "Добрый вечер" }
     }
 }
 
@@ -107,23 +94,17 @@ struct ProgressRingView: View {
     var body: some View {
         VStack(spacing: 12) {
             ZStack {
-                // Фоновый круг
                 Circle()
                     .stroke(Color(.systemGray5), lineWidth: 14)
                     .frame(width: 120, height: 120)
 
-                // Прогресс круг
                 Circle()
                     .trim(from: 0, to: progress)
-                    .stroke(
-                        Color.accentColor,
-                        style: StrokeStyle(lineWidth: 14, lineCap: .round)
-                    )
+                    .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 14, lineCap: .round))
                     .frame(width: 120, height: 120)
                     .rotationEffect(.degrees(-90))
                     .animation(.spring(response: 0.6, dampingFraction: 0.8), value: progress)
 
-                // Текст внутри кольца
                 VStack(spacing: 2) {
                     Text("\(completed)")
                         .font(.system(size: 32, weight: .bold, design: .rounded))
