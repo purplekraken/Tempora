@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		7722F59F2FA2A13800C61D1D /* Tempora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tempora.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7722F5F62FA55FCD00C61D1D /* Tempora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tempora.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		7722F5A12FA2A13800C61D1D /* Tempora */ = {
+		7722F5F82FA55FCD00C61D1D /* Tempora */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Tempora;
 			sourceTree = "<group>";
@@ -19,7 +19,7 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7722F59C2FA2A13800C61D1D /* Frameworks */ = {
+		7722F5F32FA55FCD00C61D1D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -29,18 +29,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7722F5962FA2A13800C61D1D = {
+		7722F5ED2FA55FCD00C61D1D = {
 			isa = PBXGroup;
 			children = (
-				7722F5A12FA2A13800C61D1D /* Tempora */,
-				7722F5A02FA2A13800C61D1D /* Products */,
+				7722F5F82FA55FCD00C61D1D /* Tempora */,
+				7722F5F72FA55FCD00C61D1D /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		7722F5A02FA2A13800C61D1D /* Products */ = {
+		7722F5F72FA55FCD00C61D1D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7722F59F2FA2A13800C61D1D /* Tempora.app */,
+				7722F5F62FA55FCD00C61D1D /* Tempora.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,65 +48,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7722F59E2FA2A13800C61D1D /* Tempora */ = {
+		7722F5F52FA55FCD00C61D1D /* Tempora */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7722F5AC2FA2A13900C61D1D /* Build configuration list for PBXNativeTarget "Tempora" */;
+			buildConfigurationList = 7722F6032FA55FCF00C61D1D /* Build configuration list for PBXNativeTarget "Tempora" */;
 			buildPhases = (
-				7722F59B2FA2A13800C61D1D /* Sources */,
-				7722F59C2FA2A13800C61D1D /* Frameworks */,
-				7722F59D2FA2A13800C61D1D /* Resources */,
+				7722F5F22FA55FCD00C61D1D /* Sources */,
+				7722F5F32FA55FCD00C61D1D /* Frameworks */,
+				7722F5F42FA55FCD00C61D1D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				7722F5A12FA2A13800C61D1D /* Tempora */,
+				7722F5F82FA55FCD00C61D1D /* Tempora */,
 			);
 			name = Tempora;
 			packageProductDependencies = (
 			);
 			productName = Tempora;
-			productReference = 7722F59F2FA2A13800C61D1D /* Tempora.app */;
+			productReference = 7722F5F62FA55FCD00C61D1D /* Tempora.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		7722F5972FA2A13800C61D1D /* Project object */ = {
+		7722F5EE2FA55FCD00C61D1D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2640;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
-					7722F59E2FA2A13800C61D1D = {
+					7722F5F52FA55FCD00C61D1D = {
 						CreatedOnToolsVersion = 26.4;
-						LastSwiftMigration = 2640;
 					};
 				};
 			};
-			buildConfigurationList = 7722F59A2FA2A13800C61D1D /* Build configuration list for PBXProject "Tempora" */;
+			buildConfigurationList = 7722F5F12FA55FCD00C61D1D /* Build configuration list for PBXProject "Tempora" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 7722F5962FA2A13800C61D1D;
+			mainGroup = 7722F5ED2FA55FCD00C61D1D;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 7722F5A02FA2A13800C61D1D /* Products */;
+			productRefGroup = 7722F5F72FA55FCD00C61D1D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7722F59E2FA2A13800C61D1D /* Tempora */,
+				7722F5F52FA55FCD00C61D1D /* Tempora */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7722F59D2FA2A13800C61D1D /* Resources */ = {
+		7722F5F42FA55FCD00C61D1D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -116,7 +115,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7722F59B2FA2A13800C61D1D /* Sources */ = {
+		7722F5F22FA55FCD00C61D1D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -126,7 +125,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		7722F5AA2FA2A13900C61D1D /* Debug */ = {
+		7722F6012FA55FCF00C61D1D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -190,7 +189,7 @@
 			};
 			name = Debug;
 		};
-		7722F5AB2FA2A13900C61D1D /* Release */ = {
+		7722F6022FA55FCF00C61D1D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -247,12 +246,11 @@
 			};
 			name = Release;
 		};
-		7722F5AD2FA2A13900C61D1D /* Debug */ = {
+		7722F6042FA55FCF00C61D1D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UJNA367377;
@@ -274,19 +272,17 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		7722F5AE2FA2A13900C61D1D /* Release */ = {
+		7722F6052FA55FCF00C61D1D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UJNA367377;
@@ -317,25 +313,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7722F59A2FA2A13800C61D1D /* Build configuration list for PBXProject "Tempora" */ = {
+		7722F5F12FA55FCD00C61D1D /* Build configuration list for PBXProject "Tempora" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7722F5AA2FA2A13900C61D1D /* Debug */,
-				7722F5AB2FA2A13900C61D1D /* Release */,
+				7722F6012FA55FCF00C61D1D /* Debug */,
+				7722F6022FA55FCF00C61D1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7722F5AC2FA2A13900C61D1D /* Build configuration list for PBXNativeTarget "Tempora" */ = {
+		7722F6032FA55FCF00C61D1D /* Build configuration list for PBXNativeTarget "Tempora" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7722F5AD2FA2A13900C61D1D /* Debug */,
-				7722F5AE2FA2A13900C61D1D /* Release */,
+				7722F6042FA55FCF00C61D1D /* Debug */,
+				7722F6052FA55FCF00C61D1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 7722F5972FA2A13800C61D1D /* Project object */;
+	rootObject = 7722F5EE2FA55FCD00C61D1D /* Project object */;
 }

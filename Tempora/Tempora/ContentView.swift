@@ -1,54 +1,61 @@
+//
+//  ContentView.swift
+//  Tempora
+//
+//  Created by Матвей  on 02.05.2026.
+//
+
 import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
+    @Environment(\.modelContext) private var modelContext
+    @Query private var items: [Item]
 
     var body: some View {
-        if hasSeenOnboarding {
-            MainTabView()
-        } else {
-            OnboardingView()
+        NavigationSplitView {
+            List {
+                ForEach(items) { item in
+                    NavigationLink {
+                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+                    } label: {
+                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                    }
+                }
+                .onDelete(perform: deleteItems)
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
+                ToolbarItem {
+                    Button(action: addItem) {
+                        Label("Add Item", systemImage: "plus")
+                    }
+                }
+            }
+        } detail: {
+            Text("Select an item")
         }
     }
-}
 
-struct MainTabView: View {
-    @State private var selectedTab = 0
-
-    var body: some View {
-        TabView(selection: $selectedTab) {
-            HabitsView()
-                .tabItem {
-                    Label("Привычки", systemImage: "checkmark.circle.fill")
-                }
-                .tag(0)
-
-            PomodoroView()
-                .tabItem {
-                    Label("Помодоро", systemImage: "timer")
-                }
-                .tag(1)
-
-            PriceCalculatorView()
-                .tabItem {
-                    Label("Цена времени", systemImage: "dollarsign.circle.fill")
-                }
-                .tag(2)
-
-            SettingsView()
-                .tabItem {
-                    Label("Настройки", systemImage: "gearshape.fill")
-                }
-                .tag(3)
+    private func addItem() {
+        withAnimation {
+            let newItem = Item(timestamp: Date())
+            modelContext.insert(newItem)
         }
-        .onChange(of: selectedTab) { _, _ in
-            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+    }
+
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            for index in offsets {
+                modelContext.delete(items[index])
+            }
         }
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: [HabitModel.self, PomodoroSessionModel.self], inMemory: true)
+        .modelContainer(for: Item.self, inMemory: true)
 }
