@@ -14,7 +14,7 @@ struct MainPageView: View {
                 .tag(1)
                 PomodoroView()
                     .tag(2)
-                Text("Калькулятор 💰")
+                CalculatorView()
                     .tag(3)
                 Text("Настройки ⚙️")
                     .tag(4)
