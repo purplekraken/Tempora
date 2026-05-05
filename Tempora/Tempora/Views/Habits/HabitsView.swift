@@ -128,7 +128,7 @@ struct HabitsView: View {
                     } label: {
                         Image(systemName: "plus")
                             .font(.system(size: 22, weight: .semibold))
-                            .foregroundStyle(.white)
+                            .foregroundStyle(Color(.systemBackground))
                             .frame(width: 56, height: 56)
                             .background(Color(.label))
                             .clipShape(Circle())

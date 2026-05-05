@@ -17,7 +17,6 @@ struct JournalView: View {
         guard let range = calendar.range(of: .day, in: .month, for: currentMonth),
               let first = calendar.date(from: calendar.dateComponents([.year, .month], from: currentMonth))
         else { return [] }
-
         let firstWeekday = (calendar.component(.weekday, from: first) + 5) % 7
         var result: [Date?] = Array(repeating: nil, count: firstWeekday)
         for day in range {
@@ -31,13 +30,8 @@ struct JournalView: View {
         return days.first { calendar.startOfDay(for: $0.date) == d }
     }
 
-    func hasEvents(for date: Date) -> Bool {
-        journalDay(for: date)?.events.isEmpty == false
-    }
-
-    func hasNote(for date: Date) -> Bool {
-        !(journalDay(for: date)?.note.isEmpty ?? true)
-    }
+    func hasEvents(for date: Date) -> Bool { journalDay(for: date)?.events.isEmpty == false }
+    func hasNote(for date: Date) -> Bool { !(journalDay(for: date)?.note.isEmpty ?? true) }
 
     var monthTitle: String {
         let f = DateFormatter()
@@ -53,10 +47,8 @@ struct JournalView: View {
             VStack(spacing: 0) {
                 // Хедер
                 HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Ежедневник")
-                            .font(.system(size: 34, weight: .bold, design: .rounded))
-                    }
+                    Text("Ежедневник")
+                        .font(.system(size: 34, weight: .bold, design: .rounded))
                     Spacer()
                     Button {
                         selectedDate = Date()
@@ -88,14 +80,9 @@ struct JournalView: View {
                             .background(Color(.secondarySystemBackground))
                             .clipShape(Circle())
                     }
-
                     Spacer()
-
-                    Text(monthTitle)
-                        .font(.system(size: 17, weight: .semibold))
-
+                    Text(monthTitle).font(.system(size: 17, weight: .semibold))
                     Spacer()
-
                     Button {
                         withAnimation(.spring(response: 0.4)) {
                             selectedDate = calendar.date(byAdding: .month, value: 1, to: selectedDate)!
@@ -136,9 +123,7 @@ struct JournalView: View {
                                 hasNote: hasNote(for: date)
                             )
                             .onTapGesture {
-                                withAnimation(.spring(response: 0.3)) {
-                                    selectedDate = date
-                                }
+                                withAnimation(.spring(response: 0.3)) { selectedDate = date }
                                 UIImpactFeedbackGenerator(style: .light).impactOccurred()
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                     showingDayDetail = true
@@ -150,8 +135,22 @@ struct JournalView: View {
                     }
                 }
                 .padding(.horizontal, 16)
+                .padding(.bottom, 16)
 
-                Spacer(minLength: 0)
+                // Подсказка снизу
+                VStack(spacing: 6) {
+                    Image(systemName: "hand.tap")
+                        .font(.system(size: 24))
+                        .foregroundStyle(.tertiary)
+                    Text("Нажми на день чтобы открыть расписание")
+                        .font(.system(size: 13))
+                        .foregroundStyle(.tertiary)
+                        .multilineTextAlignment(.center)
+                }
+                .padding(.top, 24)
+                .padding(.horizontal, 40)
+
+                Spacer()
             }
         }
         .sheet(isPresented: $showingDayDetail) {
@@ -170,8 +169,7 @@ struct DayCell: View {
     let hasNote: Bool
 
     var day: String {
-        let f = DateFormatter()
-        f.dateFormat = "d"
+        let f = DateFormatter(); f.dateFormat = "d"
         return f.string(from: date)
     }
 
@@ -179,33 +177,19 @@ struct DayCell: View {
         VStack(spacing: 3) {
             ZStack {
                 if isSelected {
-                    Circle()
-                        .fill(Color(.label))
-                        .frame(width: 36, height: 36)
+                    Circle().fill(Color(.label)).frame(width: 36, height: 36)
                 } else if isToday {
-                    Circle()
-                        .stroke(Color(.label), lineWidth: 1.5)
-                        .frame(width: 36, height: 36)
+                    Circle().stroke(Color(.label), lineWidth: 1.5).frame(width: 36, height: 36)
                 }
-
                 Text(day)
                     .font(.system(size: 15, weight: isToday || isSelected ? .semibold : .regular))
                     .foregroundStyle(isSelected ? Color(.systemBackground) : .primary)
             }
             .frame(width: 36, height: 36)
 
-            // Индикаторы
             HStack(spacing: 3) {
-                if hasEvents {
-                    Circle()
-                        .fill(Color.accentColor)
-                        .frame(width: 4, height: 4)
-                }
-                if hasNote {
-                    Circle()
-                        .fill(Color.orange)
-                        .frame(width: 4, height: 4)
-                }
+                if hasEvents { Circle().fill(Color.accentColor).frame(width: 4, height: 4) }
+                if hasNote { Circle().fill(Color.orange).frame(width: 4, height: 4) }
             }
             .frame(height: 6)
         }
