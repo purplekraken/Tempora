@@ -16,7 +16,7 @@ struct MainPageView: View {
                     .tag(2)
                 CalculatorView()
                     .tag(3)
-                Text("Настройки ⚙️")
+                SettingsView()
                     .tag(4)
             }
             .tabViewStyle(.page(indexDisplayMode: .never))

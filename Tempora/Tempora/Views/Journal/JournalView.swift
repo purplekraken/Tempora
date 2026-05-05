@@ -151,7 +151,7 @@ struct JournalView: View {
                 }
                 .padding(.horizontal, 16)
 
-                Spacer()
+                Spacer(minLength: 0)
             }
         }
         .sheet(isPresented: $showingDayDetail) {
